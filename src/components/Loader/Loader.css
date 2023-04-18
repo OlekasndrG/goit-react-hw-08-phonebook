@@ -1,0 +1,36 @@
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loader-man {
+  width: 80px;
+  height: 80px;
+  background-image: url('https://cdn.pixabay.com/photo/2016/11/18/14/05/man-1837255_960_720.png');
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: 480px 240px;
+  animation: run 0.8s steps(6) infinite;
+}
+
+.loader-text {
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+@keyframes run {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -480px 0;
+  }
+}
