@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FormContainer } from './Phonebook.styled';
+import { FormContainer } from '../components/Phonebook/Phonebook.styled';
 import PropTypes from 'prop-types';
 
 class ContactForm extends Component {

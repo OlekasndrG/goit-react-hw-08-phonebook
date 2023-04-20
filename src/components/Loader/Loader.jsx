@@ -16,6 +16,8 @@ const Loader = () => {
 };
 export default Loader;
 
+
+
 //  <div
 //    style={{
 //      display: 'block',

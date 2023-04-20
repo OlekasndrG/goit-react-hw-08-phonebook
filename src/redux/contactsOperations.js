@@ -1,21 +1,25 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 // import { userAPI } from './userAPI';
 import axios from 'axios';
-// const a = {
-//   createdAt: '2023-04-10T06:11:18.880Z',
-//   name: 'Miriam Leffler',
-//   phone: '1-572-569-3822 x758',
-//   id: '11',
+
+const baseUrl = 'https://connections-api.herokuapp.com';
+
+// axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
+
+// const token = {
+//   set(token) {
+//     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+//   },
+//   unset() {
+//     axios.defaults.headers.common.Authorization = '';
+//   },
 // };
 
-const baseUrl = 'https://64329c803e05ff8b3729d13e.mockapi.io/contacts/contacts';
-// First, create the thunk
 export const fetchContacts = createAsyncThunk(
-  'contacts/fetchAll',
+  '/contacts',
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get(`${baseUrl}`);
-
+      const response = await axios.get(`${baseUrl}/contacts`);
       // При успішному запиті повертаємо проміс із даними
       return response.data;
     } catch (e) {
@@ -26,11 +30,12 @@ export const fetchContacts = createAsyncThunk(
     }
   }
 );
+
 export const addContact = createAsyncThunk(
   'contacts/addContact',
   async (contact, thunkAPI) => {
     try {
-      const response = await axios.post(`${baseUrl}`, contact);
+      const response = await axios.post(`${baseUrl}/contacts`, contact);
       // При успішному запиті повертаємо проміс із даними
       return response.data;
     } catch (e) {
@@ -45,7 +50,7 @@ export const deleteContact = createAsyncThunk(
   'contacts/deleteContact',
   async (contactID, thunkAPI) => {
     try {
-      const response = await axios.delete(`${baseUrl}/${contactID}`);
+      const response = await axios.delete(`${baseUrl}/contacts/${contactID}`);
       // При успішному запиті повертаємо проміс із даними
       return response.data;
     } catch (e) {
@@ -55,4 +60,3 @@ export const deleteContact = createAsyncThunk(
     }
   }
 );
-

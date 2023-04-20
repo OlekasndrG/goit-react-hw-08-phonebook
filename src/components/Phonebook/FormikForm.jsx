@@ -5,9 +5,9 @@ import { FormContainer } from './Phonebook.styled';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-
 import { getContacts } from 'redux/selectors';
-import { addContact } from 'redux/operations';
+import { addContact } from 'redux/contactsOperations';
+import { ToastContainer } from 'react-toastify';
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
@@ -39,32 +39,44 @@ const ContactsForm = () => {
         ...data,
       })
     );
-
     resetForm();
   };
 
   return (
-    <div>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={SignupSchema}
-        onSubmit={formSubmitHandler}
-      >
-        <FormContainer>
-          <label htmlFor="name">
-            Name
-            <Field type="text" name="name" />
-          </label>
-          <ErrorMessage name="name" component="div" />
-          <label htmlFor="number">
-            Number
-            <Field type="text" name="number" />
-          </label>
-          <ErrorMessage name="number" component="div" />
-          <button type="submit">Add to contacts</button>
-        </FormContainer>
-      </Formik>
-    </div>
+    <>
+      <div>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={SignupSchema}
+          onSubmit={formSubmitHandler}
+        >
+          <FormContainer>
+            <label htmlFor="name">
+              Name
+              <Field type="text" name="name" />
+            </label>
+            <ErrorMessage name="name" component="div" />
+            <label htmlFor="number">
+              Number
+              <Field type="text" name="number" />
+            </label>
+            <ErrorMessage name="number" component="div" />
+            <button type="submit">Add to contacts</button>
+          </FormContainer>
+        </Formik>
+      </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        pauseOnHover
+        theme="light"
+      />
+    </>
   );
 };
 // ContactsForm.propTypes = {

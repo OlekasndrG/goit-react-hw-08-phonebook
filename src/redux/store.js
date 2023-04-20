@@ -10,10 +10,21 @@ import {
 } from 'redux-persist';
 
 import { contactsReducer } from './contactsSliceforThunk';
+import persistStore from 'redux-persist/es/persistStore';
+import persistReducer from 'redux-persist/es/persistReducer';
+import storage from 'redux-persist/lib/storage';
+import authReducer from './authSlice';
+
+const authPersistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['token'],
+};
 
 export const store = configureStore({
   reducer: {
     phonebook: contactsReducer,
+    auth: persistReducer(authPersistConfig, authReducer),
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
@@ -23,6 +34,6 @@ export const store = configureStore({
     }),
 });
 
-// export const persistor = persistStore(store);
+export const persistor = persistStore(store);
 // store - наш стор из редакса, в ктором items получают редюсер из созданного персисдет -  persistedContactsReducer
 //
