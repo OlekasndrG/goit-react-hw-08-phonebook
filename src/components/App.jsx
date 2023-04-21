@@ -11,11 +11,12 @@ import Contacts from 'pages/Contacts';
 import { getCurrenUser } from 'redux/AuthOperations';
 import PrivateRoute from 'Routes/PrivateRoute';
 import PublicRoute from 'Routes/PublicRoute';
-import { getIsFetchingCurrentUser, getIsLoggedIn } from 'redux/selectors';
+import { getIsFetchingCurrentUser } from 'redux/selectors';
 import PageLoader from './Loader/PageLoader';
+import { ToastContainer } from 'react-toastify';
 
 export default function HookApp() {
-  const isloggedin = useSelector(getIsLoggedIn);
+  // const isloggedin = useSelector(getIsLoggedIn);
   const isFetchingCurrentUser = useSelector(getIsFetchingCurrentUser);
 
   const dispatch = useDispatch();
@@ -23,8 +24,6 @@ export default function HookApp() {
   useEffect(() => {
     dispatch(getCurrenUser());
   }, [dispatch]);
-  console.log(isloggedin);
-  console.log();
   return isFetchingCurrentUser ? (
     <PageLoader />
   ) : (
@@ -67,13 +66,18 @@ export default function HookApp() {
         </Route>
       </Routes>
 
-      {/* <H1>Phonebook</H1>
-      <ContactsForm />
-      <H2>Contacts</H2>
-      <Filter />
-      {isError && <p>{isError}</p>}
-      {isLoading && <Loader />}
-      {!isLoading && <ContactList />} */}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover={false}
+        theme="dark"
+      />
     </>
   );
 }

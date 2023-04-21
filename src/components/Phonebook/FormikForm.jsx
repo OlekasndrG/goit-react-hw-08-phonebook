@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { getContacts } from 'redux/selectors';
 import { addContact } from 'redux/contactsOperations';
-import { ToastContainer } from 'react-toastify';
+import {  toast } from 'react-toastify';
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
@@ -31,7 +31,9 @@ const ContactsForm = () => {
         contact => contact.name.toLowerCase() === data.name.toLowerCase()
       )
     ) {
-      alert(`${data.name} is already in contacts.`);
+      toast.warning(`${data.name} is already in contacts.`, {
+        theme: 'colored',
+      });
       return;
     }
     dispatch(
@@ -39,6 +41,7 @@ const ContactsForm = () => {
         ...data,
       })
     );
+    toast.success(`${data.name} is added to Your Phonebook.`,{theme: "colored"});
     resetForm();
   };
 
@@ -65,17 +68,6 @@ const ContactsForm = () => {
           </FormContainer>
         </Formik>
       </div>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        pauseOnHover
-        theme="light"
-      />
     </>
   );
 };
