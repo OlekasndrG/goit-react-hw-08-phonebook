@@ -19,6 +19,16 @@ export const ContactsContainer = styled.ul`
     }
   }
 `;
+export const FirstLetterDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 44px;
+  border: 1px solid black;
+  border-radius: 50%;
+  background-color: red;
+`;
 export const SearchButton = styled.button`
   display: inline-block;
   width: 44px;
