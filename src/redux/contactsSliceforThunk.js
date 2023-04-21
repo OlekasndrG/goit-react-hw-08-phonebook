@@ -4,7 +4,6 @@ import {
   fetchContacts,
   deleteContact,
   addContact,
-  CreateUser,
 } from './contactsOperations';
 const contactsSlice = createSlice({
   name: 'contacts',
