@@ -31,7 +31,7 @@ export default function HookApp() {
     <>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<HomeText >This project</HomeText>} />
+          <Route index element={<HomeText>This project</HomeText>} />
           <Route
             path="/contacts"
             element={
@@ -60,7 +60,15 @@ export default function HookApp() {
             path="*"
             element={
               <div>
-                <p>Sorry, no page found</p>
+                <p
+                  style={{
+                    textDecoration: 'none',
+                    color: 'rgb(146, 171, 207)',
+                    fontSize: '34px',
+                  }}
+                >
+                  Sorry, no page found
+                </p>
               </div>
             }
           />

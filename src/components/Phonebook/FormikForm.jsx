@@ -60,23 +60,23 @@ const ContactsForm = () => {
               <label htmlFor="name">
                 Name
                 <Field type="text" name="name" />
+                <ErrorMessage name="name" component={FormikErrorMessage} />
               </label>
-              <ErrorMessage name="name" component={FormikErrorMessage} />
+
               {/* <ErrorMessage name="name">
                 {msg => <FormikErrorMessage>{msg}</FormikErrorMessage>}
               </ErrorMessage> */}
               <label htmlFor="number">
                 Number
                 <Field type="text" name="number" />
+                <ErrorMessage name="number" component={FormikErrorMessage} />
               </label>
-              <ErrorMessage name="number" component={FormikErrorMessage} />
+
               {/* <ErrorMessage name="number">
                 {msg => <FormikErrorMessage>{msg}</FormikErrorMessage>}
               </ErrorMessage> */}
 
-              {(!errors.number || !errors.name) && (
-                <button type="submit"> Add to contacts</button>
-              )}
+              <button type="submit"> Add to contacts</button>
             </FormContainer>
           )}
         </Formik>

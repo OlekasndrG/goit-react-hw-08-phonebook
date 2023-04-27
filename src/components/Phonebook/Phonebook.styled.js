@@ -33,6 +33,7 @@ export const FormContainer = styled(Form)`
     font-weight: bold;
     display: block;
     text-align: center;
+    position: relative;
   }
 
   input {
@@ -54,6 +55,7 @@ export const FormContainer = styled(Form)`
   }
 `;
 export const FormikErrorMessage = styled.div`
+position: absolute;
   width: 220px;
   height: 50px;
   overflow: auto;
