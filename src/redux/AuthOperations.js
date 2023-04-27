@@ -26,7 +26,16 @@ export const registerUser = createAsyncThunk(
     try {
       const response = await axios.post('users/signup', newUser);
       token.set(response.data.token);
-
+      toast.success('Registered successfully! Redirecting to Home Page ', {
+        position: 'top-right',
+        autoClose: 3252,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+      });
       return response.data;
     } catch (e) {
       toast.error('Something went wrong ', {
@@ -47,19 +56,18 @@ export const loginUser = createAsyncThunk(
   'auth/login',
   async (newUser, thunkAPI) => {
     try {
-      // toast.success('Success! Redirecting to Home Page', {
-      //   position: 'top-right',
-      //   autoClose: 2252,
-      //   hideProgressBar: false,
-      //   closeOnClick: true,
-      //   pauseOnHover: true,
-      //   draggable: true,
-      //   progress: undefined,
-      //   theme: 'colored',
-      // });
       const response = await axios.post('users/login', newUser);
       token.set(response.data.token);
-
+      toast.success('Success! Redirecting to Home Page', {
+        position: 'top-right',
+        autoClose: 2252,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+      });
       return response.data;
     } catch (e) {
       toast.error('Something went wrong ', {
@@ -103,7 +111,7 @@ export const getCurrenUser = createAsyncThunk(
     token.set(initialToken);
     try {
       const response = await axios.get('users/current');
-  
+
       // toast.success(`Welcome  ${response.data.name}`);
 
       return response.data;

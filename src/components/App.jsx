@@ -14,6 +14,7 @@ import PublicRoute from 'Routes/PublicRoute';
 import { getIsFetchingCurrentUser } from 'redux/selectors';
 import PageLoader from './Loader/PageLoader';
 import { ToastContainer } from 'react-toastify';
+import { HomeText } from './Layout/Layout.styled';
 
 export default function HookApp() {
   // const isloggedin = useSelector(getIsLoggedIn);
@@ -30,7 +31,7 @@ export default function HookApp() {
     <>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<h1>This project</h1>} />
+          <Route index element={<HomeText >This project</HomeText>} />
           <Route
             path="/contacts"
             element={

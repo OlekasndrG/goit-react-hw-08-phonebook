@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { ToastContainer, toast } from 'react-toastify';
+
 import { registerUser } from 'redux/AuthOperations';
 import 'react-toastify/dist/ReactToastify.css';
 import React from 'react';
+import { LoginForm } from './Login.styled';
 export const Registration = () => {
   const [state, setState] = useState({ name: '', email: '', password: '' });
   const { email, password, name } = state;
@@ -20,7 +21,7 @@ export const Registration = () => {
     e.preventDefault();
     dispatch(registerUser(state));
     setDisabled(true);
-     toast.success('Registered successfully! Redirecting to Home Page');
+    //  toast.success('Registered successfully! Redirecting to Home Page');
   };
 
   useEffect(() => {
@@ -29,15 +30,14 @@ export const Registration = () => {
 
   return (
     <div>
-      <h1>Registration page</h1>
-
-      <form onSubmit={handleSubmit} autoComplete="off">
+      <LoginForm onSubmit={handleSubmit} autoComplete="off">
+        <h1>Register</h1>
         <label>
           Name
           <input type="text" name="name" value={name} onChange={handleChange} />
         </label>
 
-        <label>
+        <label style={{ marginLeft: '4px' }}>
           Email
           <input
             type="email"
@@ -47,7 +47,7 @@ export const Registration = () => {
           />
         </label>
 
-        <label>
+        <label style={{ marginRight: '24px' }}>
           Password
           <input
             type="password"
@@ -60,19 +60,7 @@ export const Registration = () => {
         <button type="submit" disabled={disabled}>
           Register
         </button>
-      </form>
-      <ToastContainer
-        position="top-right"
-        autoClose={3252}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
+      </LoginForm>
     </div>
   );
 };

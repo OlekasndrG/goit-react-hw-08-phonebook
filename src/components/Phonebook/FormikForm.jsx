@@ -1,13 +1,13 @@
 import React from 'react';
 import { Formik, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { FormContainer } from './Phonebook.styled';
+import { FormContainer, FormikErrorMessage } from './Phonebook.styled';
 
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getContacts } from 'redux/selectors';
 import { addContact } from 'redux/contactsOperations';
-import {  toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
@@ -41,7 +41,9 @@ const ContactsForm = () => {
         ...data,
       })
     );
-    toast.success(`${data.name} is added to Your Phonebook.`,{theme: "colored"});
+    toast.success(`${data.name} is added to Your Phonebook.`, {
+      theme: 'colored',
+    });
     resetForm();
   };
 
@@ -53,19 +55,30 @@ const ContactsForm = () => {
           validationSchema={SignupSchema}
           onSubmit={formSubmitHandler}
         >
-          <FormContainer>
-            <label htmlFor="name">
-              Name
-              <Field type="text" name="name" />
-            </label>
-            <ErrorMessage name="name" component="div" />
-            <label htmlFor="number">
-              Number
-              <Field type="text" name="number" />
-            </label>
-            <ErrorMessage name="number" component="div" />
-            <button type="submit">Add to contacts</button>
-          </FormContainer>
+          {({ errors }) => (
+            <FormContainer>
+              <label htmlFor="name">
+                Name
+                <Field type="text" name="name" />
+              </label>
+              <ErrorMessage name="name" component={FormikErrorMessage} />
+              {/* <ErrorMessage name="name">
+                {msg => <FormikErrorMessage>{msg}</FormikErrorMessage>}
+              </ErrorMessage> */}
+              <label htmlFor="number">
+                Number
+                <Field type="text" name="number" />
+              </label>
+              <ErrorMessage name="number" component={FormikErrorMessage} />
+              {/* <ErrorMessage name="number">
+                {msg => <FormikErrorMessage>{msg}</FormikErrorMessage>}
+              </ErrorMessage> */}
+
+              {(!errors.number || !errors.name) && (
+                <button type="submit"> Add to contacts</button>
+              )}
+            </FormContainer>
+          )}
         </Formik>
       </div>
     </>

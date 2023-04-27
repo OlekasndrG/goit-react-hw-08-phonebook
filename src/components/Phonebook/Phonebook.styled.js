@@ -2,34 +2,37 @@ import styled from 'styled-components';
 import { Form } from 'formik';
 export const FormContainer = styled(Form)`
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 320px;
+
   gap: 15px;
-  outline: 1px solid black;
+  /* outline: 1px solid black; */
   padding: 15px 0;
 
   button {
     display: inline-block;
-    margin-left: 15px;
-    margin-bottom: 5px;
-    padding: 3px;
-    border: 2px solid black;
-    border-radius: 6px;
-    background-color: white;
+    /* margin-left: 11px; */
+    margin-top: 28px;
+    padding: 5px;
+    font-family: inherit;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    background-color: lightgreen;
     opacity: 0.8;
     width: 140px;
+    box-shadow: 3px 3px 5px grey;
     &:hover {
-      background-color: whitesmoke;
+      background-color: green;
       opacity: 1;
     }
   }
 
   label {
-    color: #b4886b;
+    margin-top: 5px;
     font-weight: bold;
     display: block;
+    text-align: center;
   }
 
   input {
@@ -39,11 +42,20 @@ export const FormContainer = styled(Form)`
     font-weight: 600;
     display: block;
     outline: none;
+    margin-top: 4px;
+    border-radius: 10px;
+    background-color: whitesmoke;
+
     &:hover,
     :active,
     :focus {
-      border: 2px solid blue;
-      border-radius: 6px;
+      border: 2px solid black;
     }
   }
+`;
+export const FormikErrorMessage = styled.div`
+  width: 220px;
+  height: 50px;
+  overflow: auto;
+  color: red;
 `;
